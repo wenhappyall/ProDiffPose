@@ -1,0 +1,43 @@
+# experiment name
+note: test
+
+#project basic
+task: poseseg 
+use_sch: False
+
+#model basic
+lr: 0.00001
+rgb_mode: False # when ee_train it must be True
+use_mask: True
+uv_mask: True # use mask when calculate UV loss
+worker: 0
+virtual_mask: False
+poseseg: True
+
+output: 'output' 
+
+use_disc: False
+mesh_disc: False
+
+#dataset
+trainset: COCO_PoseSeg # COCO_PoseSeg
+testset: COCO_PoseSeg # COCO_PoseSeg
+
+data_folder: datasets/training_data
+
+model: poseseg # poseseg
+epoch: 2000
+batchsize: 32
+mode: test # train/test
+gpu_index: 0
+
+# pretrain
+pretrain: True
+pretrain_dir: best_poseseg_epoch433_0.738752.pkl
+
+#loss
+train_loss: POSE_L2 #POSE_L2 MASK_L2
+test_loss: mAP #POSE_L1 #L1  MPJPE MASK_L1 POSE_L1
+
+#visualize
+viz: False
